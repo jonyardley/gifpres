@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --hot --progress --colors",
-    "build": "webpack --progress --colors && ./node_modules/.bin/node-sass css/index.scss build/styles.css && cp index.html build/index.html"
+    "build": "NODE_ENV=production webpack --progress --colors && ./node_modules/.bin/node-sass css/index.scss build/styles.css && cp index.html build/index.html"
   },
   "author": "",
   "license": "ISC",

@@ -1,9 +1,17 @@
 var webpack = require('webpack');
-module.exports = {
-  entry: [
-    'webpack/hot/only-dev-server',
+
+function getEntries() {
+  var entry = [
     "./js/index.js"
-  ],
+  ];
+  if(process.env.NODE_ENV != 'production'){
+    entry.push('webpack/hot/only-dev-server')
+  }
+  return entry;
+}
+
+module.exports = {
+  entry: getEntries(),
   output: {
       path: __dirname + '/build',
       filename: "bundle.js"
@@ -21,5 +29,4 @@ module.exports = {
   plugins: [
     new webpack.NoErrorsPlugin()
   ]
-
 };
