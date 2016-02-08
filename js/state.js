@@ -1,21 +1,15 @@
+/* @flow */
+
 import EventDispatcher from './event-dispatcher';
 import Immutable from 'immutable';
-
-const SlideModel = () => {
-  return {
-    label: '',
-    url: '',
-    loaded: false,
-    failed: false
-  };
-};
+import SlideModel from './models/slide';
 
 let state = Immutable.fromJS({
-  slides: [SlideModel()]
+  slides: [new SlideModel()]
 });
 
 function addSlide() {
-  const newSlides = state.get('slides').push(Immutable.Map(SlideModel()));
+  const newSlides = state.get('slides').push(Immutable.Map(new SlideModel()));
   state = state.set('slides', newSlides);
   EventDispatcher.emit('update', state.toJS());
 }
