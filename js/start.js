@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {update} from './state';
+import {actions} from './state';
 import xhr from 'xhr';
 
 export default class Start extends Component {

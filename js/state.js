@@ -14,13 +14,13 @@ function addSlide() {
   EventDispatcher.emit('update', state.toJS());
 }
 
-function updateSlideLabel(index, label) {
+function updateSlideLabel(index: number, label: string) {
   const newSlides = state.get('slides').update(index, item => item.merge({label}));
   state = state.set('slides', newSlides);
   EventDispatcher.emit('update', state.toJS());
 }
 
-function updateSlideImage(index, response){
+function updateSlideImage(index: number, response: Object){
   let update;
   if(!response.data.image_original_url){
     update = {failed: true};
@@ -32,10 +32,10 @@ function updateSlideImage(index, response){
   EventDispatcher.emit('update', state.toJS());
 }
 
-const update = {
+const actions = {
   addSlide,
   updateSlideLabel,
   updateSlideImage
 };
 
-export {state, update};
+export {state, actions};
