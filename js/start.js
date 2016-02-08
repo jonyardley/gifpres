@@ -1,19 +1,22 @@
+/* @flow */
+
 import React, {Component} from 'react';
 import {actions} from './state';
 import xhr from 'xhr';
+import type {SlideModel} from './models/slide';
 
 export default class Start extends Component {
 
   addSlide() {
-    update.addSlide();
+    actions.addSlide();
   }
 
-  removeSlide(index) {
+  removeSlide(index: number) {
     console.log('TODO: REMOVE SLIDES');
   }
 
-  updateSlide(index, event) {
-    update.updateSlideLabel(index, event.target.value);
+  updateSlide(index: number, event: Object) {
+    actions.updateSlideLabel(index, event.target.value);
   }
 
   getImageUrls() {
@@ -22,10 +25,10 @@ export default class Start extends Component {
     });
   }
 
-  getImageUrl(index, slide){
+  getImageUrl(index: number, slide: SlideModel){
     const url = `http://api.giphy.com/v1/gifs/random?tag=${slide.label}&limit=1&api_key=dc6zaTOxFJmzC`;
     xhr.get(url, (err, response) => {
-      update.updateSlideImage(index, JSON.parse(response.body));
+      actions.updateSlideImage(index, JSON.parse(response.body));
     });
   }
 
@@ -42,8 +45,8 @@ export default class Start extends Component {
         {this.props.slides.map(function(slide, index){
           return (
             <div key={`new-slide-${index}`}>
-              {`${index + 1}: `}<input onChange={this.updateSlide.bind(this, index)}></input>
-              <button onClick={event => this.removeSlide.bind(this, index, event)}>-</button>
+              {`${index + 1}: `}<input defaultValue={slide.label} onChange={this.updateSlide.bind(this, index)}></input>
+            <button onClick={event => this.removeSlide.bind(this, index, event)}>-</button>
             </div>
             )
         }.bind(this))}

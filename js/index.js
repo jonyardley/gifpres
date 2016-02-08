@@ -8,6 +8,10 @@ import Play from './play';
 
 import '../css/index.scss';
 
+if (typeof window !== 'undefined') {
+  window.React = React;
+}
+
 render((
   <Router history={browserHistory}>
     <Route path="/" component={App}>

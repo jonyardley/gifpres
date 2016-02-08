@@ -5,11 +5,11 @@ import Immutable from 'immutable';
 import SlideModel from './models/slide';
 
 let state = Immutable.fromJS({
-  slides: [new SlideModel()]
+  slides: [SlideModel()]
 });
 
 function addSlide() {
-  const newSlides = state.get('slides').push(Immutable.Map(new SlideModel()));
+  const newSlides = state.get('slides').push(Immutable.Map(SlideModel()));
   state = state.set('slides', newSlides);
   EventDispatcher.emit('update', state.toJS());
 }

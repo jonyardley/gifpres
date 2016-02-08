@@ -1,15 +1,15 @@
 /* @flow */
 
-export default class SlideModel {
+export type SlideModel = {
   label: string;
   url: string;
   loaded: bool;
   failed: bool;
+};
 
-  constructor(){
-    this.label = '';
-    this.url = '';
-    this.loaded = false;
-    this.failed = false;
-  }
-}
+export default () : SlideModel => ({
+  label: '',
+  url: '',
+  loaded: false,
+  failed: false
+});
